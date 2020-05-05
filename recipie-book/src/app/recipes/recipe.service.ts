@@ -9,20 +9,20 @@ export class RecipeService {
 	recipeSelected = new EventEmitter<Recipe>();
 	recipesChanged = new Subject<Recipe[]>();
 
-	private recipes: Recipe[] = [
-		new Recipe('Tasty Roast Beef', 'Classic roast beef recipe using rump roast', 'https://cdn.pixabay.com/photo/2017/07/16/10/43/recipe-2508859_1280.jpg',
-			[
-				new Ingredient('Meat', 1),
-				new Ingredient('French fries', 20)
+	// private recipes: Recipe[] = [
+	// 	new Recipe('Tasty Roast Beef', 'Classic roast beef recipe using rump roast', 'https://cdn.pixabay.com/photo/2017/07/16/10/43/recipe-2508859_1280.jpg',
+	// 		[
+	// 			new Ingredient('Meat', 1),
+	// 			new Ingredient('French fries', 20)
 
-			]),
-		new Recipe('Grilled Steak Salad', 'Grilled Steak Salad with Asparagus and Potatoes', 'https://cdn.pixabay.com/photo/2018/05/10/13/57/dinner-3387614_960_720.jpg', [
-			new Ingredient('Meat', 1),
-			new Ingredient('Asparagus', 20),
-			new Ingredient('Potatoes', 7)
-		])
-	];
-
+	// 		]),
+	// 	new Recipe('Grilled Steak Salad', 'Grilled Steak Salad with Asparagus and Potatoes', 'https://cdn.pixabay.com/photo/2018/05/10/13/57/dinner-3387614_960_720.jpg', [
+	// 		new Ingredient('Meat', 1),
+	// 		new Ingredient('Asparagus', 20),
+	// 		new Ingredient('Potatoes', 7)
+	// 	])
+	// ];
+	private recipes: Recipe[] = [];
 	constructor(private slService: ShoppingListService) {
 
 	}
@@ -48,6 +48,11 @@ export class RecipeService {
 
 	deleteRecipe(index: number) {
 		this.recipes.splice(index, 1);
+		this.recipesChanged.next(this.recipes.slice());
+	}
+
+	setRecipes(recipes: Recipe[]) {
+		this.recipes = recipes;
 		this.recipesChanged.next(this.recipes.slice());
 	}
 
