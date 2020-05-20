@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShoppingListService } from './shopping-list/shopping-list.service'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 
 
@@ -21,6 +21,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor';
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 		ReactiveFormsModule,
 		HttpClientModule
 	],
-	providers: [ShoppingListService, RecipeService, DataStorageService],
+	providers: [ShoppingListService, RecipeService, DataStorageService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
