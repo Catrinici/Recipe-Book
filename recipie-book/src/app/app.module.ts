@@ -5,7 +5,6 @@ import { ShoppingListService } from './shopping-list/shopping-list.service'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -22,6 +21,7 @@ import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
 	declarations: [
@@ -37,7 +37,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor';
 		RecipeStartComponent,
 		RecipeEditComponent,
 		AuthComponent,
-		LoadingSpinnerComponent
+		LoadingSpinnerComponent,
+		AlertComponent
 	],
 	imports: [
 		BrowserModule,
